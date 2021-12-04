@@ -43,6 +43,7 @@ out/
 *.iml
 *.ipr
 *.iws
+jsp_3.iml
 
 ##############################
 ## Eclipse
