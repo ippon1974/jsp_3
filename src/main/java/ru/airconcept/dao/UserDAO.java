@@ -9,8 +9,8 @@ public class UserDAO {
     public User checkLogin(String email, String password) throws SQLException,
             ClassNotFoundException {
         String jdbcURL = "jdbc:mysql://localhost/test_airconcept?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String dbUser = "airconcept";
-        String dbPassword = "k4b8c321974";
+        String dbUser = "";
+        String dbPassword = "";
 
         Class.forName ("com.mysql.cj.jdbc.Driver");
 
