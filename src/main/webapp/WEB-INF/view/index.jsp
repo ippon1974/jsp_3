@@ -11,8 +11,12 @@
 <body>
 <h1>Hello ${name}</h1>
 <p>${message}</p>
+<hr>
 <p><a href="/news">News</a></p>
 <p><a href="/test">Test oage</a></p>
-<p><a href="/test/status/">Test status</a></p>
+<p><a href="/add_cookies">Add cookies</a></p>
+<p><a href="/read_cookies">Read cookies</a></p>
+<p><a href="/delete_cookies">Delete cookies</a></p>
+<p><a href="/login">Login</a></p>
 </body>
 </html>
