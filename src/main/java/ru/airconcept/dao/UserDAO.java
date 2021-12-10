@@ -1,7 +1,6 @@
 package ru.airconcept.dao;
 
 import ru.airconcept.model.User;
-
 import java.sql.*;
 
 public class UserDAO {
@@ -9,8 +8,8 @@ public class UserDAO {
     public User checkLogin(String email, String password) throws SQLException,
             ClassNotFoundException {
         String jdbcURL = "jdbc:mysql://localhost/test_airconcept?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String dbUser = "";
-        String dbPassword = "";
+        String dbUser = "airconcept";
+        String dbPassword = "k@4b8C321974";
 
         Class.forName ("com.mysql.cj.jdbc.Driver");
 

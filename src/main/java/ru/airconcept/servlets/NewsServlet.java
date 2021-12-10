@@ -15,6 +15,7 @@ public class NewsServlet extends HttpServlet {
         String id = req.getParameter("id");
         req.setAttribute ("id", id);
         req.setAttribute ("newstxt", "HI");
+        System.out.println(id);
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/news.jsp");
         requestDispatcher.forward(req, resp);

@@ -9,24 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet( "/")
+@WebServlet("/")
 public class IndexServlet extends HttpServlet {
-
-    private String message;
-
-    public void init() throws ServletException {
-        message = "This is simple servlet message";
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.setAttribute ("message", message);
+        req.setAttribute ("message", "This is simple servlet message");
         req.setAttribute("name", "Mudaki");
-
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/view/index.jsp");
         requestDispatcher.forward(req, resp);
     }
-
-    public void destroy() {}
 }
