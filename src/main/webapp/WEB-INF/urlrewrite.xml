@@ -4,8 +4,8 @@
     http://www.tuckey.org/urlrewrite/
 
  -->
-<urlrewrite use-query-string="true">
-
+<urlrewrite>
+    
     <rule>
         <from>/news/([0-9]+)</from>
         <to>/news?id=$1</to>

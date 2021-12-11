@@ -7,32 +7,99 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>/WEB-INF/view/index.jsp</welcome-file>-->
+<!--  </welcome-file-list>-->
+
+
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>ru.airconcept.servlets.IndexServlet</welcome-file>-->
+<!--  </welcome-file-list>-->
+
+
   <welcome-file-list>
-    <welcome-file>ru.airconcept.servlets.IndexServlet</welcome-file>
+    <welcome-file>ru.airconcept.servlets.HomeServlet</welcome-file>
   </welcome-file-list>
 
+<!--  <filter>-->
+<!--    <filter-name>UrlRewriteFilter</filter-name>-->
+<!--    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>-->
+<!--    <init-param>-->
+<!--      <param-name>logLevel</param-name>-->
+<!--      <param-value>WARN</param-value>-->
+<!--    </init-param>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>UrlRewriteFilter</filter-name>-->
+<!--    <url-pattern>/*</url-pattern>-->
+<!--  </filter-mapping>-->
+
+
+  <!-- URL ReWriter -->
   <filter>
     <filter-name>UrlRewriteFilter</filter-name>
     <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
-    <init-param>
-      <param-name>logLevel</param-name>
-      <param-value>WARN</param-value>
-    </init-param>
   </filter>
   <filter-mapping>
     <filter-name>UrlRewriteFilter</filter-name>
     <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
   </filter-mapping>
 
+
+<!--  <error-page>-->
+<!--    <error-code>404</error-code>-->
+<!--    <location>/AppExceptionHandler</location>-->
+<!--  </error-page>-->
+
+<!--  <error-page>-->
+<!--    <exception-type>javax.servlet.ServletException</exception-type>-->
+<!--    <location>/AppExceptionHandler</location>-->
+<!--  </error-page>-->
+
+<!--  <error-page>-->
+<!--    <exception-type>java.lang.Throwable</exception-type>-->
+<!--    <location>/AppExceptionHandler</location>-->
+<!--  </error-page>-->
+
+
+<!--  <error-page>-->
+<!--    &lt;!&ndash; Missing login &ndash;&gt;-->
+<!--    <error-code>401</error-code>-->
+<!--    <location>/general-error.html</location>-->
+<!--  </error-page>-->
+<!--  <error-page>-->
+<!--    &lt;!&ndash; Forbidden directory listing &ndash;&gt;-->
+<!--    <error-code>403</error-code>-->
+<!--    <location>/general-error.html</location>-->
+<!--  </error-page>-->
+
   <error-page>
+    <!-- Missing resource -->
     <error-code>404</error-code>
     <location>/404.jsp</location>
   </error-page>
 
-  <error-page>
-    <error-code>403</error-code>
-    <location>/403.jsp</location>
-  </error-page>
+<!--  <error-page>-->
+<!--    &lt;!&ndash; Uncaught exception &ndash;&gt;-->
+<!--    <error-code>500</error-code>-->
+<!--    <location>/general-error.html</location>-->
+<!--  </error-page>-->
+<!--  <error-page>-->
+<!--    &lt;!&ndash; Unsupported servlet method &ndash;&gt;-->
+<!--    <error-code>503</error-code>-->
+<!--    <location>/general-error.html</location>-->
+<!--  </error-page>-->
+
+<!--  <error-page>-->
+<!--    <location>/404.jsp</location>-->
+<!--  </error-page>-->
+
+<!--  <error-page>-->
+<!--    <exception-type>java.lang.Exception</exception-type>-->
+<!--    <location>/404.jsp</location>-->
+<!--  </error-page>-->
 
   <servlet-mapping>
     <servlet-name>default</servlet-name>
@@ -58,5 +125,12 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.pdf</url-pattern>
   </servlet-mapping>
-
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>
