@@ -12,6 +12,7 @@
 <body>
 <h1>Hello ${name}</h1>
 <p>${message}</p>
+<p>Session: ${osel}</p>
 <hr>
 <p><a href="/news">News</a></p>
 <p><a href="/test">Test page</a></p>
@@ -19,5 +20,18 @@
 <p><a href="/read_cookies">Read cookies</a></p>
 <p><a href="/delete_cookies">Delete cookies</a></p>
 <p><a href="/login">Login</a></p>
+<ul>
+    <li>User: ${Name}</li>
+    <li>Password: ${Password}</li>
+    <li>Session: ${osel}</li>
+    <li>Cookie: ${Cookie}</li>
+</ul>
+<hr>
+
+<form name="loginForm" method="post" action="/">
+    Username: <input type="text" name="username"/> <br/>
+    Password: <input type="password" name="password"/> <br/>
+    <input type="submit" value="Login" />
+</form>
 </body>
 </html>
