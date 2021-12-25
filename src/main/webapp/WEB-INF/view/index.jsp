@@ -20,6 +20,7 @@
 <p><a href="/read_cookies">Read cookies</a></p>
 <p><a href="/delete_cookies">Delete cookies</a></p>
 <p><a href="/login">Login</a></p>
+<p><a href="/servlet-headers">Servlet-Headers</a></p>
 <ul>
     <li>User: ${Name}</li>
     <li>Password: ${Password}</li>

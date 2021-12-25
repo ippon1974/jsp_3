@@ -5,12 +5,32 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 @WebServlet("")
 public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+//        String name = "time_50000";
+        String value = String.valueOf(System.currentTimeMillis());
+//        Cookie cookie = new Cookie(name, value);
+//        cookie.setMaxAge(60 * 60 * 24);
+//        resp.addCookie(cookie);
+
+        Cookie firstName = new Cookie("first_name", value);
+        Cookie lastName = new Cookie("last_name", value);
+        firstName.setMaxAge(60*60*24);
+        lastName.setMaxAge(180);
+//        firstName.setMaxAge(0);
+//        lastName.setMaxAge(0);
+        resp.addCookie(firstName);
+        resp.addCookie(lastName);
 
         HttpSession session = req.getSession();
 
@@ -33,12 +53,6 @@ public class IndexServlet extends HttpServlet {
         HttpSession session;
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-
-        String name = "time_28";
-        String value = String.valueOf(System.currentTimeMillis());
-        Cookie cookie = new Cookie(name, value);
-        cookie.setMaxAge(5);
-        resp.addCookie(cookie);
 
         session = req.getSession(true);
         session.setAttribute("Name",username);
