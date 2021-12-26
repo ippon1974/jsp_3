@@ -34,5 +34,11 @@
     Password: <input type="password" name="password"/> <br/>
     <input type="submit" value="Login" />
 </form>
+
+<hr>
+<img src="${pageContext.request.contextPath}/img/110.gif" alt="">
+<img src="${pageContext.request.contextPath}/img/103.gif" alt="">
+
+
 </body>
 </html>
