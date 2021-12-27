@@ -1,21 +1,30 @@
 package ru.airconcept.servlets;
 
+import ru.airconcept.dao.ConnectionFactory;
+import ru.airconcept.model.ModelGrill;
+import ru.airconcept.service.GrillService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.List;
 
 @WebServlet("")
 public class IndexServlet extends HttpServlet {
 
+    private GrillService grillService;
+    private ModelGrill modelGrill;
+    private Date dt;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        grillService = new GrillService (ConnectionFactory.getInstance());
+        List<ModelGrill> listGrills = grillService.getAll();
+        req.setAttribute ("listGrills", listGrills);
 
 //        String name = "time_50000";
         String value = String.valueOf(System.currentTimeMillis());
