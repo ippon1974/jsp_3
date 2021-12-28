@@ -11,6 +11,11 @@
         <to>/news?id=$1</to>
     </rule>
 
+    <rule>
+        <from>^/catalog/grills/(.*)$</from>
+        <to>/catalog/grills?name=$1</to>
+    </rule>
+
 <!--      <rule>-->
 <!--        <note> The rule means that requests to /test/status/ will be redirected to /rewrite-status the url will be rewritten. </note>-->
 <!--        <from>/test/status/</from>-->
