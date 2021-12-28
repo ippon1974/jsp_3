@@ -15,14 +15,13 @@ import java.util.List;
 @WebServlet("")
 public class IndexServlet extends HttpServlet {
 
-    private GrillService grillService;
     private ModelGrill modelGrill;
     private Date dt;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        grillService = new GrillService (ConnectionFactory.getInstance());
+        GrillService grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
         req.setAttribute ("listGrills", listGrills);
 

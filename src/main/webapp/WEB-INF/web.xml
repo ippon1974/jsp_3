@@ -82,6 +82,13 @@
   </error-page>
 
 <!--  <error-page>-->
+<!--    &lt;!&ndash; Missing resource &ndash;&gt;-->
+<!--    <error-code>500</error-code>-->
+<!--    <location>/500.jsp</location>-->
+<!--  </error-page>-->
+
+
+  <!--  <error-page>-->
 <!--    &lt;!&ndash; Uncaught exception &ndash;&gt;-->
 <!--    <error-code>500</error-code>-->
 <!--    <location>/general-error.html</location>-->

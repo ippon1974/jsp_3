@@ -28,4 +28,17 @@ public class ModelGrill {
     public void setGname(String gname) {
         this.gname = gname;
     }
+
+
+    @Override
+    public String toString() {
+        return "ModelGrill{" +
+                "gid=" + gid +
+                ", gname='" + gname + '\'' +
+                ", type=" + type +
+                ", width=" + width +
+                ", height=" + height +
+                ", thickness=" + thickness +
+                '}';
+    }
 }

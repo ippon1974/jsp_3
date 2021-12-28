@@ -15,6 +15,7 @@
 <p>Session: ${osel}</p>
 <hr>
 <p><a href="/news">News</a></p>
+<p><a href="/catalog">Catalog</a></p>
 <p><a href="/test">Test page</a></p>
 <p><a href="/add_cookies">Add cookies</a></p>
 <p><a href="/read_cookies">Read cookies</a></p>
