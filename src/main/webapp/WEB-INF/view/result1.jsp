@@ -2,10 +2,11 @@
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <html>
 <head>
-    <title>${name}</title>
+    <title>Шаблон вентиляционной решетки ${name}</title>
 </head>
 <body>
-<h3>Single Parameter</h3>
+<a href="${pageContext.request.contextPath}/catalog/grills"><< Grills</a>
+<h3>Шаблон вентиляционной решетки ${name}</h3>
 Id: ${id}<br>
 Name: ${name}
 </body>

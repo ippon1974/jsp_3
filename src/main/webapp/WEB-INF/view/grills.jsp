@@ -10,10 +10,14 @@
 
 <h1>Grills</h1>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b8c9009f4d6a413119f6f9a1f173a1da258db8bc
 <c:forEach var="My" items="${listGrills}">
     <c:set var="name" value="${My.gname}"/>
-    <a href="${pageContext.request.contextPath}/catalog/grills?name=${fn:toLowerCase(name)}">${My.gname}</a><br>
+<%--    <a href="${pageContext.request.contextPath}/catalog/grills?name=${fn:toLowerCase(name)}">${My.gname}</a><br>--%>
+    <a href="${pageContext.request.contextPath}/catalog/grills/${fn:toLowerCase(name)}">${My.gname}</a><br>
 </c:forEach>
 
 </body>
