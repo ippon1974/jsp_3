@@ -13,7 +13,7 @@
 
     <rule>
         <from>^/catalog/grills/(.*)$</from>
-        <to>/catalog/grills?name=$1</to>
+        <to>/catalog/grills?template=$1</to>
     </rule>
 
 <!--      <rule>-->

@@ -16,7 +16,7 @@ import java.util.ListIterator;
 @WebServlet( "/catalog/grills")
 public class GrillsServlet extends HttpServlet {
 
-    private ModelGrill nameGrill;
+    private ModelGrill modelGrill;
     private GrillService grillService;
 
     @Override
@@ -43,14 +43,14 @@ public class GrillsServlet extends HttpServlet {
 
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String name = req.getParameter("name");
-        System.out.println(name);
+        String template = req.getParameter("template");
 
         grillService = new GrillService(ConnectionFactory.getInstance());
-        nameGrill = grillService.getByName(name);
+        modelGrill = grillService.getByTransliterations(template);
 
-        req.setAttribute("name", nameGrill.getGname());
-        req.setAttribute("id", nameGrill.getGid());
+        req.setAttribute ("transliterations", modelGrill.getGtransliterations());
+        req.setAttribute("template", modelGrill.getGname());
+        req.setAttribute("id", modelGrill.getGid());
         req.getRequestDispatcher("/WEB-INF/view/result1.jsp").forward(req, resp);
     }
 
