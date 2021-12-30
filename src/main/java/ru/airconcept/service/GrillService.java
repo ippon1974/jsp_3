@@ -14,7 +14,7 @@ import java.util.List;
 public class GrillService {
     public static final String SELECT_BY_ID_QUERY = "SELECT gid, gname FROM cgrill WHERE gid = ?";
     public static final String SELECT_BY_TRANSLITERATIONS_QUERY = "SELECT * FROM cgrill WHERE gtransliterations = ? AND gispubl = '1'";
-    public static final String SELECT_ALL_QUERY = "SELECT gid, gname, gtransliterations FROM cgrill WHERE gispubl = '1' AND gispubl = '1'";
+    public static final String SELECT_ALL_QUERY = "SELECT gid, gname, gtransliterations FROM cgrill WHERE gispubl = '1' AND gispubl = '1' ORDER BY gname";
     public static final String COLUMN_ID = "gid";
     public static final String COLUMN_NAME = "gname";
     public static final String COLUMN_TRANSLITERATIONS = "gtransliterations";
