@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<p><a href="/catalog"><< Catalig</a></p>
+
 <h1>Grills</h1>
 
 <c:forEach var="template" items="${listGrills}">

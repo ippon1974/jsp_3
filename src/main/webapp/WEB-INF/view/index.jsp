@@ -40,8 +40,13 @@
 <img src="${pageContext.request.contextPath}/img/110.gif" alt="">
 <img src="${pageContext.request.contextPath}/img/103.gif" alt="">
 <hr>
-<c:forEach var="My" items="${listGrills}">
-    <a href="/detail/${My.gid}">${My.gname}</a><br>
+<%--<c:forEach var="My" items="${listGrills}">--%>
+<%--    <a href="/detail/${My.gid}">${My.gname}</a><br>--%>
+<%--</c:forEach>--%>
+
+
+<c:forEach var="template" items="${listGrills}">
+    <a href="${pageContext.request.contextPath}/catalog/grills/${template.gtransliterations}">${template.gname}</a><br>
 </c:forEach>
 
 </body>
