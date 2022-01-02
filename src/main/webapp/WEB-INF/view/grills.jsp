@@ -5,6 +5,8 @@
 <html>
 <head>
     <title>Grills</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
@@ -12,9 +14,21 @@
 
 <h1>Grills</h1>
 
-<c:forEach var="template" items="${listGrills}">
-    <a href="${pageContext.request.contextPath}/catalog/grills/${template.gtransliterations}">${template.gname}</a><br>
-</c:forEach>
+<div id="images">
+
+    <c:forEach var="template" items="${listGrills}">
+        <div class="about">
+            <figure>
+                <a href="/catalog/grills/${template.gtransliterations}">
+                    <img src="/img/showcase/${template.gtransliterations}.png"></a>
+                <figcaption>ID: ${template.gid}<br><a href="/catalog/grills/${template.gtransliterations}">${template.gname}</a><br></figcaption>
+            </figure>
+        </div>
+    </c:forEach>
+
+</div>
+
+
 
 </body>
 </html>

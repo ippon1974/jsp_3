@@ -2,6 +2,8 @@ package ru.airconcept.servlets;
 
 import ru.airconcept.dao.ConnectionFactory;
 import ru.airconcept.model.ModelGrill;
+import ru.airconcept.model.ModelMaterial;
+import ru.airconcept.model.ModelSize;
 import ru.airconcept.service.GrillService;
 
 import javax.servlet.ServletException;
@@ -44,13 +46,20 @@ public class GrillsServlet extends HttpServlet {
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String template = req.getParameter("template");
-
         grillService = new GrillService(ConnectionFactory.getInstance());
+
+        List<ModelMaterial> modelMaterial = grillService.getListMaterial();
+        req.setAttribute ("modelMaterial", modelMaterial);
+
+        List<ModelSize> modelSize = grillService.getListSize();
+        req.setAttribute ("modelSize", modelSize);
+
         modelGrill = grillService.getByTransliterations(template);
 
         req.setAttribute ("transliterations", modelGrill.getGtransliterations());
         req.setAttribute("template", modelGrill.getGname());
         req.setAttribute("id", modelGrill.getGid());
+
         req.getRequestDispatcher("/WEB-INF/view/result1.jsp").forward(req, resp);
     }
 
