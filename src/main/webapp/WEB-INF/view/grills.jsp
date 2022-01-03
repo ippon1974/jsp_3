@@ -12,6 +12,8 @@
 
 <p><a href="/catalog"><< Catalig</a></p>
 
+<a href="/catalog/form">FORM</a>
+
 <h1>Grills</h1>
 
 <div id="images">

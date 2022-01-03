@@ -1,9 +1,9 @@
 package ru.airconcept.servlets;
 
 import ru.airconcept.dao.ConnectionFactory;
-import ru.airconcept.model.ModelGrill;
-import ru.airconcept.model.ModelMaterial;
-import ru.airconcept.model.ModelSize;
+import ru.airconcept.model.*;
+import ru.airconcept.service.CalcService;
+import ru.airconcept.service.CostService;
 import ru.airconcept.service.GrillService;
 
 import javax.servlet.ServletException;
@@ -13,13 +13,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.ListIterator;
 
 @WebServlet( "/catalog/grills")
 public class GrillsServlet extends HttpServlet {
 
     private ModelGrill modelGrill;
     private GrillService grillService;
+
+    private ModelCalc modelCalc;
+    private CalcService calcService;
+
+    private ModelCost modelCost;
+    private CostService costService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,17 +40,30 @@ public class GrillsServlet extends HttpServlet {
     }
 
     protected void doGet_Def(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
-
         req.setAttribute ("listGrills", listGrills);
         req.getRequestDispatcher("/WEB-INF/view/grills.jsp").forward(req, resp);
+
+
     }
 
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String template = req.getParameter("template");
+        String template = req.getParameter("template"); // параметр из адреса запроса который переделан rewrate
+
+
+        String material = req.getParameter("materialid");
+        req.setAttribute ("material", material);
+
+        String size = req.getParameter("size");
+        req.setAttribute("size", size);
+
+        String width = req.getParameter("width");
+        req.setAttribute ("width", width);
+        String height = req.getParameter ("height");
+        req.setAttribute ("height", height);
+
         grillService = new GrillService(ConnectionFactory.getInstance());
 
         List<ModelMaterial> modelMaterial = grillService.getListMaterial();
@@ -60,15 +78,7 @@ public class GrillsServlet extends HttpServlet {
         req.setAttribute("template", modelGrill.getGname());
         req.setAttribute("id", modelGrill.getGid());
 
-        req.getRequestDispatcher("/WEB-INF/view/result1.jsp").forward(req, resp);
-    }
-
-    protected void doGet_Demo2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    protected void doGet_Demo3(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }
 
 }
