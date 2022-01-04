@@ -4,6 +4,8 @@ import ru.airconcept.dao.ConnectionFactory;
 import ru.airconcept.dao.DaoException;
 import ru.airconcept.model.ModelCalc;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,6 +40,46 @@ public class CalcService {
             throw new DaoException (String.format("Method getCostMatStore(name: '%d') has thrown an exception.", material), e);
         }
         return null;
+    }
+
+    // Метод вычисляет коэффициент отношения сторон объекта Длина пользователя / длину в безе 120 mm
+    public double getAspect(int w, int h, int minWidth){
+        int temp = 0;
+        double aspect;
+        if(w < h){
+            temp = h;
+            h = w;
+            w = temp;
+        }
+        aspect = (double) w / minWidth;
+        return  aspect;
+    }
+
+    // Метод вычисляет площадь геометрической фигуры
+    public double getArea(double w, double h){
+        double area;
+        area = (w / 1000) * (h / 1000);
+        return  area;
+    }
+
+    // Метод вычисляет общую длину реза в погонных метрах
+    public int getCutLength(int border, int inside, double aspect){
+        int total = (int)(border * aspect) + (int)(inside * aspect);
+        return total;
+    }
+
+    // Метод вычисляет стоимость материала без раскроя
+    public BigDecimal getCostMatNotCut(BigDecimal costMatnotCut, double area) {
+        BigDecimal a = new BigDecimal(area);
+        BigDecimal costMatNotCut = costMatnotCut.multiply(a).setScale(0, RoundingMode.DOWN);
+        return costMatNotCut;
+    }
+
+    //Метод вычисляет стоимость раскроя без материала
+    public BigDecimal getCostCutNotMat(BigDecimal costformeter, int cutmeter){
+        BigDecimal meter = new BigDecimal(cutmeter);
+        BigDecimal cost = costformeter.multiply(meter).setScale(0, RoundingMode.DOWN);
+        return  cost;
     }
 
 

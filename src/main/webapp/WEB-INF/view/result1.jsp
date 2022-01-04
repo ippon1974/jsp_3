@@ -115,24 +115,24 @@
 
             <dl class="calcTotal">
                 <dt>Aspect </dt>
-                <dd></dd>
+                <dd>${aspect}</dd>
                 <dt>Площцадь </dt>
-                <dd></dd>
+                <dd>${area}</dd>
                 <dt>Стоимость 1 кв. м. склад </dt>
-                <dd></dd>
+                <dd>${modelCalc.getCost()}</dd>
                 <dt>Длина реза</dt>
-                <dd></dd>
+                <dd>${allcutlength}</dd>
                 <dt>Стоимость реза 1 пог. м.</dt>
-                <dd></dd>
+                <dd>${modelCalc.getCostmcut()}</dd>
             </dl>
 
             <div class="finalCalc">
-                <p>Стоимость материала без раскроя</strong>: ' + sessile.getCostmatnotcut() + ' руб. + 30% надбавка за материал ' + sessile.getTaxMat() + ' руб.</p>
-                <p>Стоимость раскрооя без материала</strong>: ' + sessile.getCostcutnotmat() + ' руб. + 30% надбавка за раской ' + sessile.getTaxCut() + ' руб.</p>
+                <p>Стоимость материала без раскроя: ${costmatnotcut} руб. + 30% надбавка за материал ${addTaxMat} руб.</p>
+                <p>Стоимость раскрооя без материала: ${costcutnotmat} руб. + 30% надбавка за раской ${addTaxCut} руб.</p>
 
                 <div>
-                    <h3>Итого: sessile.getTotal() + '</span>' + ' руб.</h3>
-                    <h3>Итого с НДС: sessile.getTotalNdc() + '</span>' + ' руб.'</h3>
+                    <h3>Итого: ${total} руб.</h3>
+                    <h3>Итого с НДС: ${totalNdc} руб.</h3>
                 </div>
             </div>
 
