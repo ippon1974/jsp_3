@@ -1,20 +1,26 @@
 package ru.airconcept.model;
 
+import java.math.BigDecimal;
+
 public class ModelCalc {
-    private int id;
+    private String mname;
     private int size;
+    private BigDecimal cost; //стоимость материала на складе поставщика
+    private BigDecimal costmcut;
 
-    public ModelCalc(int id, int size) {
-        this.id = id;
+    public ModelCalc(String mname, int size, BigDecimal cost, BigDecimal costmcut) {
+        this.mname = mname;
         this.size = size;
+        this.cost = cost;
+        this.costmcut = costmcut;
     }
 
-    public int getId() {
-        return id;
+    public String getMname() {
+        return mname;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMname(String mname) {
+        this.mname = mname;
     }
 
     public int getSize() {
@@ -23,5 +29,21 @@ public class ModelCalc {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
+    public BigDecimal getCostmcut() {
+        return costmcut;
+    }
+
+    public void setCostmcut(BigDecimal costmcut) {
+        this.costmcut = costmcut;
     }
 }

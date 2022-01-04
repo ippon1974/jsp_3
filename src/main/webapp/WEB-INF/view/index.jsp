@@ -45,9 +45,9 @@
 <%--</c:forEach>--%>
 
 
-<c:forEach var="template" items="${listGrills}">
-    <a href="${pageContext.request.contextPath}/catalog/grills/${template.gtransliterations}">${template.gname}</a><br>
-</c:forEach>
+<%--<c:forEach var="template" items="${listGrills}">--%>
+<%--    <a href="${pageContext.request.contextPath}/catalog/grills/${template.gtransliterations}">${template.gname}</a><br>--%>
+<%--</c:forEach>--%>
 
 </body>
 </html>

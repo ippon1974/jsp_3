@@ -20,11 +20,11 @@ public class GrillsServlet extends HttpServlet {
     private ModelGrill modelGrill;
     private GrillService grillService;
 
-    private ModelCalc modelCalc;
-    private CalcService calcService;
-
     private ModelCost modelCost;
     private CostService costService;
+
+    private ModelCalc modelCalc;
+    private CalcService calcService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,13 +50,20 @@ public class GrillsServlet extends HttpServlet {
 
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String template = req.getParameter("template"); // параметр из адреса запроса который переделан rewrate
-
+        String template = req.getParameter("template"); // параметр из строки запроса который переделан модулем rewrate
 
         String material = req.getParameter("materialid");
+        int materialID = 0;
+        if(material != null) {
+            materialID = Integer.parseInt (material);
+        }
         req.setAttribute ("material", material);
 
         String size = req.getParameter("size");
+        int sizeID = 0;
+        if(size != null) {
+            sizeID = Integer.parseInt (size);
+        }
         req.setAttribute("size", size);
 
         String width = req.getParameter("width");
@@ -78,6 +85,12 @@ public class GrillsServlet extends HttpServlet {
         req.setAttribute("template", modelGrill.getGname());
         req.setAttribute("id", modelGrill.getGid());
 
+        calcService = new CalcService (ConnectionFactory.getInstance());
+        if(material != null || size !=null) {
+            modelCalc = calcService.getCostMatStore (materialID, sizeID);
+            req.setAttribute ("modelCalc", modelCalc);
+            System.out.println (modelCalc.getCostmcut() + " " + modelCalc.getMname () + " " + modelCalc.getCost() + " " + modelCalc.getSize());
+        }
         req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }
 
