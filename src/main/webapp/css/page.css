@@ -1,0 +1,206 @@
+@font-face {
+    font-family: "Bitstream Vera Serif Bold";
+    src: url("https://mdn.mozillademos.org/files/2468/VeraSeBd.ttf");
+}
+
+@font-face{
+    font-family: 'LeagueGothicRegular';
+    src:  url('/font/LeagueGothicRegular.eot');
+    src:  url('/font/LeagueGothicRegular.eot#iefix') format('embedded-opentype'),
+    url('/font/LeagueGothicRegular.woff') format('woff'),
+    url('/font/LeagueGothicRegular.ttf') format('truetype');
+url('/font/LeagueGothicRegular.svg') format('svg');
+}
+
+.textMy{
+    font-family: 'Bitstream Vera Serif Bold', Arial, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    margin: 40px;
+    font-size: 100%;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 2px;
+    grid-template-columns: 1fr 1fr 1fr;
+    /*grid-auto-columns: 100px;*/
+    background-color: #fff;
+    color: #444;
+}
+
+.box {
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    padding: 20px;
+    /*font-size: 150%;*/
+}
+
+.a {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.a > h1{
+    font-family: 'LeagueGothicRegular', Arial, sans-serif;
+    font-size: 3.1em;
+    /*color: brown;*/
+    color: #575757;
+    width: auto;
+}
+
+.b {
+    grid-column: 3 ;
+    grid-row: 1 / 3;
+}
+
+.b > img .myImg{
+    width: 100%;
+}
+
+.c {
+    grid-column: 1 ;
+    grid-row: 2 ;
+}
+
+.c > p{
+    background-color: antiquewhite;
+    padding: 0.5em;
+}
+
+.d {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.war {
+    font-family: 'Bitstream Vera Serif Bold', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.e {
+    grid-column: 4 / 5;
+    grid-row: 1 / 4;
+}
+
+.viewForm{
+    background-color: #f4f4f4;
+}
+
+.viewForm div{
+    padding: 5px 10px;
+    margin: 0 0 0.5em 0;
+    background: #f4f4f4;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 8px 0;
+    font-size: 1.1em;
+    font-weight: bolder;
+    box-sizing: border-box;
+}
+
+.custom-select {
+    position: relative;
+    font-family: 'Bitstream Vera Serif Bold', Arial;
+    font-size: 1.1em;
+    width: 100%;
+    background-color: white;
+}
+
+
+input[type=submit] {
+    padding: 5px 30px;
+    margin: 0 auto;
+    background: coral;
+    /*border:0 none;*/
+    width: 200px;
+    height: 50px;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 0;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+dt,
+dd {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 0;
+}
+
+/*dt:nth-of-type(2n),*/
+/*dd:nth-of-type(2n) {*/
+/*    margin-bottom: 1em;*/
+/*}*/
+
+dt {
+    text-align: left;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+dd {
+    padding-left: 10px;
+}
+
+dt:after {
+    content: ":";
+}
+
+
+
+.calcTotal dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calcTotal dt,
+.calcTotal dd {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 0;
+    font-family: 'Bitstream Vera Serif Bold', Arial, sans-serif;
+}
+
+.calcTotal dt {
+    text-align: left;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.calcTotal dd {
+    padding-left: 10px;
+}
+
+.calcTotal dt:after {
+    content: ":";
+}
+
+.finalCalc{
+    font-family: 'Bitstream Vera Serif Bold', Arial, sans-serif;
+}
+
+.finalCalc > div{
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+.finalCalc > h3{
+    background-color: gold;
+}
+
+.finalCalc div > h3 > span{
+    background-color: gold;
+}

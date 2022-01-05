@@ -55,6 +55,10 @@ public class GrillsServlet extends HttpServlet {
 
         String template = req.getParameter("template"); // параметр из строки запроса который переделан модулем rewrate
 
+        grillService = new GrillService(ConnectionFactory.getInstance());
+        List<ModelGrill> listGrills = grillService.getAll();
+        req.setAttribute ("listGrills", listGrills);
+
         String material = req.getParameter("materialid");
         int materialID = 0;
         if(material != null) {
@@ -83,7 +87,6 @@ public class GrillsServlet extends HttpServlet {
         }
         req.setAttribute ("height", height);
 
-        grillService = new GrillService(ConnectionFactory.getInstance());
 
         List<ModelMaterial> modelMaterial = grillService.getListMaterial();
         req.setAttribute ("modelMaterial", modelMaterial);
@@ -95,6 +98,7 @@ public class GrillsServlet extends HttpServlet {
 
         req.setAttribute ("transliterations", modelGrill.getGtransliterations());
         req.setAttribute("template", modelGrill.getGname());
+        req.setAttribute("templateuri", modelGrill.getGtransliterations());
         req.setAttribute("id", modelGrill.getGid());
 
         calcService = new CalcService (ConnectionFactory.getInstance());

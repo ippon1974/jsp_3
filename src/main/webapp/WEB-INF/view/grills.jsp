@@ -18,12 +18,13 @@
 
 <div id="images">
 
-    <c:forEach var="template" items="${listGrills}">
+    <c:forEach var="listGrills" items="${listGrills}">
         <div class="about">
             <figure>
-                <a href="/catalog/grills/${template.gtransliterations}">
-                    <img src="/img/showcase/${template.gtransliterations}.png"></a>
-                <figcaption>ID: ${template.gid}<br><a href="/catalog/grills/${template.gtransliterations}">${template.gname}</a><br></figcaption>
+                <a href="/catalog/grills?template=${listGrills.gtransliterations}">
+                    <img src="/img/showcase/${listGrills.gtransliterations}.png"></a>
+<%--                <figcaption>ID: ${listGrills.gid}<br><a href="/catalog/grills/${listGrills.gtransliterations}">${listGrills.gname}</a><br></figcaption>--%>
+                <figcaption>ID: ${listGrills.gid}<br><a href="/catalog/grills?template=${listGrills.gtransliterations}">${listGrills.gname}</a><br></figcaption>
             </figure>
         </div>
     </c:forEach>

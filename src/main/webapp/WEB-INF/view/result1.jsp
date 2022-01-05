@@ -3,6 +3,8 @@
 <html>
 <head>
     <title>Вентиляционная решетка ${template}</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/page.css">
 </head>
 <body>
 
@@ -44,7 +46,22 @@
     <tr valign="top">
         <td width="40%">
             <form method="get" id="search">
-
+                <div>
+                    <fieldset>
+                        <legend>Шаблон</legend>
+                        <select class="custom-select" id="template" name="template">
+                            <c:forEach var="listGrills" items="${listGrills}">
+                                <c:if test="${templateuri == listGrills.gtransliterations}">
+                                    <option value="${listGrills.gtransliterations}" selected>${listGrills.gname}</option>
+                                </c:if>
+                                <c:if test="${templateuri != listGrills.gtransliterations}">
+                                    <option value="${listGrills.gtransliterations}">${listGrills.gname}</option>
+                                </c:if>
+<%--                                <option value="${listGrills.gtransliterations}">${listGrills.gname}</option>--%>
+                            </c:forEach>
+                        </select>
+                    </fieldset>
+                </div>
                 <div>
                     <fieldset>
                         <legend>Материал</legend>
@@ -106,24 +123,24 @@
                 <dt>Материал</dt>
                 <dd>${modelCalc.getMname()}</dd>
                 <dt>Толщина материала</dt>
-                <dd>${modelCalc.getSize()}</dd>
+                <dd>${modelCalc.getSize()} мм.</dd>
                 <dt>Длина шаблона</dt>
-                <dd>${width}</dd>
+                <dd>${width} мм.</dd>
                 <dt>Высота шаблона</dt>
-                <dd>${height}</dd>
+                <dd>${height} мм.</dd>
             </dl>
 
             <dl class="calcTotal">
                 <dt>Aspect </dt>
                 <dd>${aspect}</dd>
                 <dt>Площцадь </dt>
-                <dd>${area}</dd>
+                <dd>${area} кв. м.</dd>
                 <dt>Стоимость 1 кв. м. склад </dt>
-                <dd>${modelCalc.getCost()}</dd>
+                <dd>${modelCalc.getCost()} руб.</dd>
                 <dt>Длина реза</dt>
-                <dd>${allcutlength}</dd>
+                <dd>${allcutlength} пог. м.</dd>
                 <dt>Стоимость реза 1 пог. м.</dt>
-                <dd>${modelCalc.getCostmcut()}</dd>
+                <dd>${modelCalc.getCostmcut()}  руб.</dd>
             </dl>
 
             <div class="finalCalc">
