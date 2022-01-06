@@ -12,8 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @WebServlet( "/catalog/grills")
@@ -53,7 +58,13 @@ public class GrillsServlet extends HttpServlet {
 
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String dt = myDateObj.format(myFormatObj);
+        System.out.println (dt);
+
         String template = req.getParameter("template"); // параметр из строки запроса который переделан модулем rewrate
+        HttpSession session = req.getSession();
 
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
@@ -110,7 +121,6 @@ public class GrillsServlet extends HttpServlet {
 
         taxService = new TaxService(ConnectionFactory.getInstance());
         if(width != null || height != null){
-
             // Коэффициент длина из фррмы делим на 120
             double aspect = calcService.getAspect(widthID, heightID, modelGrill.getGw());
             req.setAttribute ("aspect", aspect);
@@ -148,8 +158,14 @@ public class GrillsServlet extends HttpServlet {
             req.setAttribute ("total", total);
             req.setAttribute ("totalNdc", totalNdc);
 
+            session.setAttribute("modelNameSession", modelGrill.getGname());
+            session.setAttribute("materialSession", modelCalc.getMname());
+            session.setAttribute("sizeSession", modelCalc.getSize());
+            session.setAttribute("widthSession", width);
+            session.setAttribute("heightSession", height);
+            session.setAttribute("totalSession",totalNdc);
+            session.setAttribute("dtSession",dt);
         }
-
         req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }
 
