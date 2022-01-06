@@ -165,6 +165,7 @@ public class GrillsServlet extends HttpServlet {
             session.setAttribute("heightSession", height);
             session.setAttribute("totalSession",totalNdc);
             session.setAttribute("dtSession",dt);
+            
         }
         req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }

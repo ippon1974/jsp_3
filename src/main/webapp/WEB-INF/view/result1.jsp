@@ -115,13 +115,16 @@
         </td>
         <td valign="top">
 
-            <div>
-                <form action="${pageContext.request.contextPath}/cart" name="cart" method="post">
-                    <input type="submit" value="В корзину">
-                </form>
-            </div>
+            <c:if test="${totalNdc != null}">
+                <div>
+                    <form action="${pageContext.request.contextPath}/cart" name="cart" method="post">
+                        <input type="submit" value="В корзину">
+                    </form>
+                </div>
+            </c:if>
 
-            <h2 class="war">Вычисляем все прямо тут бля! </h2>
+
+            <h2 class="war">Вычисляем</h2>
 
                 Результаты вычесления. Вычисляем примерную стоимость продукта.
             <dl>

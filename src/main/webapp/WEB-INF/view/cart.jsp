@@ -16,15 +16,14 @@
         <td>Price</td>
         <td>DataTime</td>
     </tr>
+<c:forEach var="listCatr" items="${listCatr}">
     <tr>
-        <td>${modelNameSession}</td>
-        <td></td>
-        <td>${materialSession}</td>
-        <td>${sizeSession} * ${widthSession} * ${heightSession}</td>
-        <td>${totalSession}</td>
+        <td>${listCatr.getName()}</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
         <td>${dtSession}</td>
     </tr>
+</c:forEach>
 </table>
-
-</body>
-</html>
