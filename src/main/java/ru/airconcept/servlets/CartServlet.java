@@ -3,7 +3,10 @@ package ru.airconcept.servlets;
 import ru.airconcept.model.ModelCart;
 import ru.airconcept.service.CartService;
 
+import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +18,26 @@ import java.util.UUID;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
+
+
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest sreq = (HttpServletRequest)servletRequest;
+        System.out.println(sreq.getMethod());
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session;
+        session = req.getSession(true);
+        CartService cartService = (CartService) session.getAttribute ("cartService");
+
+        List<ModelCart> listCatr = cartService.list();
+
+        if(cartService != null) {
+            req.setAttribute ("listCatr", listCatr);
+        }
+
         req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
     }
 

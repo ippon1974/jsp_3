@@ -27,3 +27,5 @@
     </tr>
 </c:forEach>
 </table>
+
+<p><a href="${pageContext.request.contextPath}/catalog/grills">Contie </a></p>

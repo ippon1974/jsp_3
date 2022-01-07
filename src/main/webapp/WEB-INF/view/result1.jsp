@@ -10,37 +10,15 @@
 
 <a href="${pageContext.request.contextPath}/catalog/grills"><< Grills</a>
 
-<%--Id: ${id}<br>--%>
-<%--Name: ${template}<br>--%>
-<%--<c:set var="material" value="${material}"/>--%>
-<%--<c:if test="${material == null}">--%>
-<%--    Material: Не выбран<br>--%>
-<%--</c:if>--%>
-<%--<c:if test="${material == 1}">--%>
-<%--    Material: Латунь<br>--%>
-<%--</c:if>--%>
-<%--<c:if test="${material == 2}">--%>
-<%--    Material: Медь<br>--%>
-<%--</c:if>--%>
-<%--<c:if test="${material == 3}">--%>
-<%--    Material: Сталь<br>--%>
-<%--</c:if>--%>
-
-<%--<c:set var="size" value="${size}"/>--%>
-<%--<c:if test="${size == null}">--%>
-<%--    Size: Не выбран<br>--%>
-<%--</c:if>--%>
-<%--<c:if test="${size != null}">--%>
-<%--    Size: ${size}<br>--%>
-<%--</c:if>--%>
-
-<%--Width: ${width}<br>--%>
-<%--Height: ${height}<br>--%>
-
 <table cellpadding="5" cellspacing="5" border="0" width="95%">
     <tr>
         <td valign="top" colspan="3">
             <h1>Вентиляционная решетка ${template}</h1>
+
+            <c:if test="${cartService != null}">
+                <div align="right"><a href="/cart">Cart</a></div>
+            </c:if>
+
         </td>
     </tr>
     <tr valign="top">

@@ -2,10 +2,7 @@ package ru.airconcept.servlets;
 
 import ru.airconcept.dao.ConnectionFactory;
 import ru.airconcept.model.*;
-import ru.airconcept.service.CalcService;
-import ru.airconcept.service.CostService;
-import ru.airconcept.service.GrillService;
-import ru.airconcept.service.TaxService;
+import ru.airconcept.service.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,7 +54,6 @@ public class GrillsServlet extends HttpServlet {
     }
 
     protected void doGet_Demo1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String dt = myDateObj.format(myFormatObj);
@@ -65,6 +61,8 @@ public class GrillsServlet extends HttpServlet {
 
         String template = req.getParameter("template"); // параметр из строки запроса который переделан модулем rewrate
         HttpSession session = req.getSession();
+        CartService cartService = (CartService) session.getAttribute ("cartService");
+        req.setAttribute ("cartService", cartService);
 
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
