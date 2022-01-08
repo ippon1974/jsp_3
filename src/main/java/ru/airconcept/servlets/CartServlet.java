@@ -13,31 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
 
-
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest sreq = (HttpServletRequest)servletRequest;
-        System.out.println(sreq.getMethod());
-    }
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session;
         session = req.getSession(true);
         CartService cartService = (CartService) session.getAttribute ("cartService");
-
         List<ModelCart> listCatr = cartService.list();
-
         if(cartService != null) {
             req.setAttribute ("listCatr", listCatr);
         }
-
         req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
     }
 
@@ -46,29 +37,42 @@ public class CartServlet extends HttpServlet {
         HttpSession session;
         session = req.getSession(true);
         String name = (String)session.getAttribute ("modelNameSession");
+        Integer number = (Integer)session.getAttribute ("numberSession");
+        BigDecimal totalNDC = (BigDecimal)session.getAttribute ("totalSession");
+        String img = (String)session.getAttribute ("transliterationsSession");
+        String material = (String) session.getAttribute ("materialSession");
+        int width = (int)session.getAttribute ("widthSession");
+        int height = (int)session.getAttribute ("heightSession");
+        int size = (int)session.getAttribute ("sizeSession");
 
         CartService cartService = (CartService) session.getAttribute ("cartService");
         ModelCart modelCart = new ModelCart();
         modelCart.setId (UUID.randomUUID().toString());
         modelCart.setName(name);
+        modelCart.setNumber(number);
+        modelCart.setNamematerial(material);
+        modelCart.setWidth(width);
+        modelCart.setHeight(height);
+        modelCart.setSize(size);
+        modelCart.setTotalNDC(totalNDC);
+        modelCart.setImg(img);
 
         if (cartService == null) {
-            cartService = new CartService ();
+            cartService = new CartService();
             session.setAttribute("cartService", cartService);
         }
+        cartService.add(modelCart);
 
-        cartService.add (modelCart);
-        List<ModelCart> listCatr = cartService.list ();
+        List<ModelCart> listCatr = cartService.list();
         req.setAttribute ("listCatr", listCatr);
-
 
         req.setAttribute ("modelNameSession", session.getAttribute ("modelNameSession"));
         req.setAttribute ("materialSession", session.getAttribute ("materialSession"));
         req.setAttribute ("sizeSession", session.getAttribute ("sizeSession"));
-        req.setAttribute ("sizeSession", session.getAttribute ("sizeSession"));
         req.setAttribute ("widthSession", session.getAttribute ("widthSession"));
         req.setAttribute ("heightSession", session.getAttribute ("heightSession"));
 
-        req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
+//        req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
+        resp.sendRedirect(req.getContextPath() + "/cart");
     }
 }

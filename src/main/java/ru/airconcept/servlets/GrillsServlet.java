@@ -36,8 +36,8 @@ public class GrillsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String uri = req.getRequestURI();
-        String action = req.getParameter("action");
+//        String uri = req.getRequestURI();
+//        String action = req.getParameter("action");
 
         if(req.getQueryString()==null){
             doGet_Def(req, resp);
@@ -57,7 +57,6 @@ public class GrillsServlet extends HttpServlet {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String dt = myDateObj.format(myFormatObj);
-        System.out.println (dt);
 
         String template = req.getParameter("template"); // параметр из строки запроса который переделан модулем rewrate
         HttpSession session = req.getSession();
@@ -67,6 +66,12 @@ public class GrillsServlet extends HttpServlet {
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
         req.setAttribute ("listGrills", listGrills);
+
+        String number = req.getParameter ("number");
+        int numberlID = 0;
+        if(number != null) {
+            numberlID = Integer.parseInt (number);
+        }
 
         String material = req.getParameter("materialid");
         int materialID = 0;
@@ -156,14 +161,15 @@ public class GrillsServlet extends HttpServlet {
             req.setAttribute ("total", total);
             req.setAttribute ("totalNdc", totalNdc);
 
+            session.setAttribute("transliterationsSession", modelGrill.getGtransliterations());
             session.setAttribute("modelNameSession", modelGrill.getGname());
             session.setAttribute("materialSession", modelCalc.getMname());
+            session.setAttribute("numberSession", numberlID);
             session.setAttribute("sizeSession", modelCalc.getSize());
-            session.setAttribute("widthSession", width);
-            session.setAttribute("heightSession", height);
+            session.setAttribute("widthSession", widthID);
+            session.setAttribute("heightSession", heightID);
             session.setAttribute("totalSession",totalNdc);
             session.setAttribute("dtSession",dt);
-            
         }
         req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }

@@ -6,7 +6,7 @@ public class ModelCalc {
     private String mname;
     private int size;
     private BigDecimal cost; //стоимость материала на складе поставщика
-    private BigDecimal costmcut;
+    private BigDecimal costmcut; //стоимость раскроя материала за один погонный метр
 
     public ModelCalc(String mname, int size, BigDecimal cost, BigDecimal costmcut) {
         this.mname = mname;

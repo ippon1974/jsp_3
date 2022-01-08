@@ -24,6 +24,7 @@
     <tr valign="top">
         <td width="40%">
             <form method="get" id="search">
+                <input type="hidden" name="number" value="1">
                 <div>
                     <fieldset>
                         <legend>Шаблон</legend>

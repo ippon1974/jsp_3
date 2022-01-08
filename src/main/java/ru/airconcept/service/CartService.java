@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CartService {
     // Список для хранения CarItem (элемент корзины)
-    private List<ModelCart> list = new ArrayList<ModelCart> ();
+    private List<ModelCart> list = new ArrayList<ModelCart>();
 
     public List<ModelCart> list() {
         return list;
@@ -25,11 +25,4 @@ public class CartService {
             }
         }
     }
-
-
-
-
-
-
-
 }
