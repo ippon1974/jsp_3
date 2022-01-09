@@ -8,15 +8,14 @@
 </head>
 <body>
 
-<a href="${pageContext.request.contextPath}/catalog/grills"><< Grills</a>
-
-<table cellpadding="5" cellspacing="5" border="0" width="95%">
+<table align="center" cellpadding="5" cellspacing="5" border="0" width="90%">
     <tr>
         <td valign="top" colspan="3">
+            <p><a href="${pageContext.request.contextPath}/catalog/grills"><< Grills</a></p>
             <h1>Вентиляционная решетка ${template}</h1>
 
             <c:if test="${cartService != null}">
-                <div align="right"><a href="/cart">Cart</a></div>
+                <div align="right"><a href="/cart">Корзина</a></div>
             </c:if>
 
         </td>
@@ -24,7 +23,7 @@
     <tr valign="top">
         <td width="40%">
             <form method="get" id="search">
-                <input type="hidden" name="number" value="1">
+<%--                <input type="hidden" name="number" value="1">--%>
                 <div>
                     <fieldset>
                         <legend>Шаблон</legend>
@@ -119,25 +118,25 @@
                 <dd>${height} мм.</dd>
             </dl>
 
-            <dl class="calcTotal">
-                <dt>Aspect </dt>
-                <dd>${aspect}</dd>
-                <dt>Площцадь </dt>
-                <dd>${area} кв. м.</dd>
-                <dt>Стоимость 1 кв. м. склад </dt>
-                <dd>${modelCalc.getCost()} руб.</dd>
-                <dt>Длина реза</dt>
-                <dd>${allcutlength} пог. м.</dd>
-                <dt>Стоимость реза 1 пог. м.</dt>
-                <dd>${modelCalc.getCostmcut()}  руб.</dd>
-            </dl>
+<%--            <dl class="calcTotal">--%>
+<%--                <dt>Aspect </dt>--%>
+<%--                <dd>${aspect}</dd>--%>
+<%--                <dt>Площцадь </dt>--%>
+<%--                <dd>${area} кв. м.</dd>--%>
+<%--                <dt>Стоимость 1 кв. м. склад </dt>--%>
+<%--                <dd>${modelCalc.getCost()} руб.</dd>--%>
+<%--                <dt>Длина реза</dt>--%>
+<%--                <dd>${allcutlength} пог. м.</dd>--%>
+<%--                <dt>Стоимость реза 1 пог. м.</dt>--%>
+<%--                <dd>${modelCalc.getCostmcut()}  руб.</dd>--%>
+<%--            </dl>--%>
 
             <div class="finalCalc">
-                <p>Стоимость материала без раскроя: ${costmatnotcut} руб. + 30% надбавка за материал ${addTaxMat} руб.</p>
-                <p>Стоимость раскрооя без материала: ${costcutnotmat} руб. + 30% надбавка за раской ${addTaxCut} руб.</p>
+<%--                <p>Стоимость материала без раскроя: ${costmatnotcut} руб. + 30% надбавка за материал ${addTaxMat} руб.</p>--%>
+<%--                <p>Стоимость раскрооя без материала: ${costcutnotmat} руб. + 30% надбавка за раской ${addTaxCut} руб.</p>--%>
 
                 <div>
-                    <h3>Итого: ${total} руб.</h3>
+<%--                    <h3>Итого: ${total} руб.</h3>--%>
                     <h3>Итого с НДС: ${totalNdc} руб.</h3>
                 </div>
             </div>

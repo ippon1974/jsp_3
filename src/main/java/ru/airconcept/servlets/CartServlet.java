@@ -44,6 +44,7 @@ public class CartServlet extends HttpServlet {
         int width = (int)session.getAttribute ("widthSession");
         int height = (int)session.getAttribute ("heightSession");
         int size = (int)session.getAttribute ("sizeSession");
+        int typematerial = (int)session.getAttribute ("typematerialSession");
 
         CartService cartService = (CartService) session.getAttribute ("cartService");
         ModelCart modelCart = new ModelCart();
@@ -51,6 +52,7 @@ public class CartServlet extends HttpServlet {
         modelCart.setName(name);
         modelCart.setNumber(number);
         modelCart.setNamematerial(material);
+        modelCart.setTypematerial(typematerial);
         modelCart.setWidth(width);
         modelCart.setHeight(height);
         modelCart.setSize(size);

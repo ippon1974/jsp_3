@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -66,6 +67,12 @@ public class GrillsServlet extends HttpServlet {
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
         req.setAttribute ("listGrills", listGrills);
+
+        String typematerial = req.getParameter ("materialid");
+        int typematerialID = 0;
+        if(typematerial != null) {
+            typematerialID = Integer.parseInt(typematerial);
+        }
 
         String number = req.getParameter ("number");
         int numberlID = 0;
@@ -156,6 +163,7 @@ public class GrillsServlet extends HttpServlet {
             BigDecimal total = costmatnotcut.add(costcutnotmat).add (addTaxMat).add(addTaxCut);
             BigDecimal addNdc = total.multiply(taxNdc).divide(percent);
             BigDecimal totalNdc = total.add (addNdc);
+            totalNdc = totalNdc.setScale (0, RoundingMode.CEILING);
             req.setAttribute ("addTaxMat", addTaxMat);
             req.setAttribute ("addTaxCut", addTaxCut);
             req.setAttribute ("total", total);
@@ -164,10 +172,11 @@ public class GrillsServlet extends HttpServlet {
             session.setAttribute("transliterationsSession", modelGrill.getGtransliterations());
             session.setAttribute("modelNameSession", modelGrill.getGname());
             session.setAttribute("materialSession", modelCalc.getMname());
-            session.setAttribute("numberSession", numberlID);
+            session.setAttribute("numberSession", 1);
             session.setAttribute("sizeSession", modelCalc.getSize());
             session.setAttribute("widthSession", widthID);
             session.setAttribute("heightSession", heightID);
+            session.setAttribute("typematerialSession", typematerialID);
             session.setAttribute("totalSession",totalNdc);
             session.setAttribute("dtSession",dt);
         }

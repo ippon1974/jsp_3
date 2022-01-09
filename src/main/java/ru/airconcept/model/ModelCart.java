@@ -6,6 +6,7 @@ public class ModelCart {
     private String id;
     private String name;
     private String namematerial;
+    private int typematerial;
     private int number;
     private int size;
     private int width;
@@ -35,6 +36,14 @@ public class ModelCart {
 
     public void setNamematerial(String namematerial) {
         this.namematerial = namematerial;
+    }
+
+    public int getTypematerial() {
+        return typematerial;
+    }
+
+    public void setTypematerial(int typematerial) {
+        this.typematerial = typematerial;
     }
 
     public int getNumber() {
