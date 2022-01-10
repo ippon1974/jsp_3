@@ -16,6 +16,10 @@
 
 <h1>Grills</h1>
 
+<c:if test="${cartService != null}">
+    <div align="right"><a href="/cart">Корзина</a></div>
+</c:if>
+
 <div id="images">
 
     <c:forEach var="listGrills" items="${listGrills}">

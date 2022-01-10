@@ -51,6 +51,9 @@ public class GrillsServlet extends HttpServlet {
         grillService = new GrillService(ConnectionFactory.getInstance());
         List<ModelGrill> listGrills = grillService.getAll();
         req.setAttribute ("listGrills", listGrills);
+        HttpSession session = req.getSession();
+        CartService cartService = (CartService) session.getAttribute ("cartService");
+        req.setAttribute ("cartService", cartService);
         req.getRequestDispatcher("/WEB-INF/view/grills.jsp").forward(req, resp);
     }
 
