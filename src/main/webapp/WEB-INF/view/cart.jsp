@@ -28,7 +28,18 @@
 <%--    <input type="hidden" name="nameTemplate" value="${listCatr.getName()}">--%>
     <c:set var="totalcart" value="${totalcart + (listCatr.getTotalNDC() * listCatr.getNumber())}" />
     <tr>
-        <td width="205px"><img src="/img/showcase/${listCatr.getImg()}.png" alt=""></td>
+<%--        <td width="205px"><img src="/img/showcase/${listCatr.getImg()}.png" alt=""></td>--%>
+        <td width="150px">
+            <c:if test="${listCatr.getTypematerial() == 1}">
+                <p><img src="/img/cart/copper/${listCatr.getImg()}.png"></p>
+            </c:if>
+            <c:if test="${listCatr.getTypematerial() == 2}">
+                <p><img src="/img/cart/brass/${listCatr.getImg()}.png"></p>
+            </c:if>
+            <c:if test="${listCatr.getTypematerial() == 3}">
+                <p><img src="/img/cart/steel/${listCatr.getImg()}.png"></p>
+            </c:if>
+        </td>
         <td><a target="_blank" href="${pageContext.request.contextPath}/catalog/grills?template=${listCatr.getImg()}&materialid=${listCatr.getTypematerial()}&size=2&width=${listCatr.getWidth()}&height=${listCatr.getHeight()}">Вентиляционная решетка ${listCatr.getName()}</a></td>
         <td>${listCatr.getNamematerial()}</td>
         <td>${listCatr.getWidth()} мм &#215; ${listCatr.getHeight()} мм &#215; ${listCatr.getSize()} мм</td>
