@@ -50,10 +50,10 @@
 </c:forEach>
     <tr>
         <td colspan="7">
+            <hr>
             <div align="left">
-                <p><a href="${pageContext.request.contextPath}/catalog/grills">Продолжить покупки</a> | <a href="/">Оформить заказ </a></p>
+                <p><a href="${pageContext.request.contextPath}/catalog/grills">Продолжить покупки</a> | <a href="/order">Оформить заказ </a></p>
             </div>
-
             <c:if test="${totalcart != 0}">
                 <div align="right"><input type="submit" value="Обновить"></div>
             </c:if>
@@ -63,5 +63,3 @@
 </table>
 
 </form>
-
-<hr>
