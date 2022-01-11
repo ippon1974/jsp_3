@@ -75,6 +75,8 @@ public class CartServlet extends HttpServlet {
         req.setAttribute ("heightSession", session.getAttribute ("heightSession"));
 
 //        req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
-        resp.sendRedirect(req.getContextPath() + "/cart");
+//        resp.sendRedirect(req.getContextPath() + "/cart");
+        String path = String.format ("/catalog/grills?template=%s&materialid=%d&size=%d&width=%d&height=%d", img,typematerial, size, width, height);
+          resp.sendRedirect(req.getContextPath() + path);
     }
 }

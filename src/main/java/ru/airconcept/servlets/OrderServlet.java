@@ -43,7 +43,7 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
         int ID = 0;
         if(id != null) {
@@ -52,29 +52,27 @@ public class OrderServlet extends HttpServlet {
 
         String name = req.getParameter("name");
 
-
         orderService = new OrderService(ConnectionFactory.getInstance());
-        orderService.saveOrder(ID, name);
+        orderService.saveOrder(name);
 
 //        try
 //        {
 //            Class.forName("com.mysql.cj.jdbc.Driver");
 //            String url="jdbc:mysql://localhost:3306/test_airconcept";
 //            String user="airconcept";
-//            String password="k@4b8C321974";
+//            String password="k4b8c321974";
 //            Connection con= DriverManager.getConnection(url, user, password);
 //
-//            String query="Insert into test_airconcept.order(id, name) values (?, ?);";
+//            String query="Insert into test_airconcept.order(name) values (?);";
 //            PreparedStatement pstmt=con.prepareStatement(query);
-//            pstmt.setInt(1, ID);
-//            pstmt.setString(2, name);
+////            pstmt.setInt(1, ID);
+//            pstmt.setString(1, name);
 //            pstmt.executeUpdate();
 //        }
 //        catch(Exception e)
 //        {
 //            e.printStackTrace();
 //        }
-
 
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
 

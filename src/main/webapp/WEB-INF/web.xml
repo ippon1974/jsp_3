@@ -7,21 +7,12 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-<!--  <welcome-file-list>-->
-<!--    <welcome-file>/WEB-INF/view/index.jsp</welcome-file>-->
-<!--  </welcome-file-list>-->
-
-
-<!--  <welcome-file-list>-->
-<!--    <welcome-file>ru.airconcept.servlets.IndexServlet</welcome-file>-->
-<!--  </welcome-file-list>-->
-
-
   <welcome-file-list>
-    <welcome-file>ru.airconcept.servlets.HomeServlet</welcome-file>
+    <welcome-file>ru.airconcept.servlets.IndexServlet</welcome-file>
   </welcome-file-list>
 
-<!--  <filter>-->
+
+  <!--  <filter>-->
 <!--    <filter-name>UrlRewriteFilter</filter-name>-->
 <!--    <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>-->
 <!--    <init-param>-->

@@ -185,5 +185,4 @@ public class GrillsServlet extends HttpServlet {
         }
         req.getRequestDispatcher ("/WEB-INF/view/result1.jsp").forward (req, resp);
     }
-
 }
