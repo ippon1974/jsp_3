@@ -36,6 +36,7 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session;
         session = req.getSession(true);
+
         String name = (String)session.getAttribute ("modelNameSession");
         Integer number = (Integer)session.getAttribute ("numberSession");
         BigDecimal totalNDC = (BigDecimal)session.getAttribute ("totalSession");
@@ -73,6 +74,7 @@ public class CartServlet extends HttpServlet {
         req.setAttribute ("sizeSession", session.getAttribute ("sizeSession"));
         req.setAttribute ("widthSession", session.getAttribute ("widthSession"));
         req.setAttribute ("heightSession", session.getAttribute ("heightSession"));
+        req.setAttribute ("numberSumSession", session.getAttribute ("numberSession"));
 
 //        req.getRequestDispatcher ("/WEB-INF/view/cart.jsp").forward (req, resp);
 //        resp.sendRedirect(req.getContextPath() + "/cart");
