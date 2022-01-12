@@ -11,22 +11,46 @@
 <body>
 
 
-<table align="center" border="1" width="80%">
+<table cellpadding="2" cellspacing="2" align="center" border="0" width="70%">
     <tr>
-        <td>
+        <td colspan="6">
             <h1>Оформление заказа</h1>
             <h2>Заказ № 1402351</h2>
         </td>
     </tr>
 
-        <c:forEach var="modelOrderList" items="${modelOrderList}" varStatus="loop">
+
+    <c:set var="totalcart" value="${0}" />
+    <c:forEach var="orderList" items="${orderList}" varStatus="loop">
+        <c:set var="totalcart" value="${totalcart + (orderList.getTotalNDC() * orderList.getNumber())}" />
     <tr>
-            <td><p>${modelOrderList.getName()}</p></td>
+        <td width="150px">
+            <c:if test="${orderList.getTypematerial() == 1}">
+                <p><img src="/img/cart/copper/${orderList.getImg()}.png"></p>
+            </c:if>
+            <c:if test="${orderList.getTypematerial() == 2}">
+                <p><img src="/img/cart/brass/${orderList.getImg()}.png"></p>
+            </c:if>
+            <c:if test="${orderList.getTypematerial() == 3}">
+                <p><img src="/img/cart/steel/${orderList.getImg()}.png"></p>
+            </c:if>
+        </td>
+            <td><p>Вентиляционная решетка ${orderList.getName()}</p></td>
+            <td><p>${orderList.getNamematerial()}</p></td>
+            <td>${orderList.getWidth()} мм &#215; ${orderList.getHeight()} мм &#215; ${orderList.getSize()} мм</td>
+            <td><p>${orderList.getTotalNDC() * orderList.getNumber()} руб.</p></td>
+            <td><p>${orderList.getNumber()}</p></td>
     </tr>
         </c:forEach>
 
     <tr>
-        <td>
+        <td colspan="6">
+            <p align="right"><strong>Общая стоимость: ${totalcart} руб.</strong></p>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="7">
             <form method="post">
                 <%--    <input type="text" name="id">--%>
                 <input type="text" name="name">

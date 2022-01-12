@@ -25,7 +25,7 @@ import java.util.Random;
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
 
-    private OrderService orderService;
+//    private OrderService orderService;
     private static final Random r = new Random(); // <- shared resource
 
     @Override
@@ -33,63 +33,35 @@ public class OrderServlet extends HttpServlet {
         HttpSession session;
         session = req.getSession(true);
         CartService cartService = (CartService) session.getAttribute ("cartService");
-
         List<ModelCart> cartList = cartService.list();
-        orderService = new OrderService(ConnectionFactory.getInstance());
 
-        List<ModelOrder> modelOrderList = orderService.list();
-        ModelOrder modelOrder = new ModelOrder();
+        OrderService orderService = new OrderService(ConnectionFactory.getInstance());
+        List<ModelOrder> orderList = orderService.list();
 
         for (int i = 0; i < cartList.size(); i++) {
-            modelOrder.setName(cartList.get(i).getName());
+            ModelOrder modelOrder = new ModelOrder();
+            modelOrder.setName (cartList.get(i).getName());
+            modelOrder.setNamematerial (cartList.get (i).getNamematerial());
+            modelOrder.setTypematerial (cartList.get (i).getTypematerial ());
+            modelOrder.setNumber (cartList.get (i).getNumber());
+            modelOrder.setSize (cartList.get (i).getSize ());
+            modelOrder.setWidth (cartList.get (i).getWidth ());
+            modelOrder.setHeight (cartList.get (i).getHeight ());
+            modelOrder.setImg (cartList.get (i).getImg ());
+            modelOrder.setTotalNDC (cartList.get (i).getTotalNDC());
+            orderList.add (modelOrder);
         }
 
-
-        for (int i = 0; i < modelOrderList.size(); i++) {
-            System.out.println(modelOrderList.get(i).getName());
-        }
-
-
-        req.setAttribute ("modelOrderList", modelOrderList);
-
-
-
-
-
-
-//        String nameTemplate = (String)session.getAttribute ("modelNameSession");
-//        req.setAttribute("nameTemplate", nameTemplate);
-//
-//        String materialName = (String)session.getAttribute ("materialSession");
-//        req.setAttribute("materialName", materialName);
-//
-//        int materialSize = (int)session.getAttribute ("sizeSession");
-//        req.setAttribute("materialSize", materialSize);
-//
-//        int materialWidth = (int)session.getAttribute ("widthSession");
-//        req.setAttribute("materialWidth", materialWidth);
-//
-//        int materialHeight= (int)session.getAttribute ("heightSession");
-//        req.setAttribute("materialHeight", materialHeight);
-//
-//        int number = (int) session.getAttribute("numberSession");
-//        req.setAttribute("number", number);
-//
-//        System.out.println("This is session order " + nameTemplate);
-
+        req.setAttribute ("orderList", orderList);
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-
         String name = req.getParameter("name");
-
-        orderService = new OrderService(ConnectionFactory.getInstance());
+        OrderService orderService = new OrderService(ConnectionFactory.getInstance());
         orderService.saveOrder(name);
-
-
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 }
