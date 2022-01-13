@@ -73,8 +73,16 @@ public class OrderService {
         return lastid;
     }
 
-    private int lastInsetID(int lastInsetID){
-        return lastInsetID;
+    public void saveOrder(int id){
+        try (Connection connection = connectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement("INSERT INTO orders (customerId, createdAt) VALUES (?, NOW());")){
+            statement.setInt (1, id);
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+        }catch (Exception e){
+            throw new DaoException (String.format("Method saveOrder(id: '%d') has thrown an exception.", id), e);
+        }
     }
 
 

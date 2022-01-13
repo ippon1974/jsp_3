@@ -19,6 +19,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -66,7 +68,8 @@ public class OrderServlet extends HttpServlet {
         OrderService orderService = new OrderService(ConnectionFactory.getInstance());
 
         int lastInsertId = orderService.saveCustomer(name, phone, email, comment);
-        System.out.println(lastInsertId);
+
+        orderService.saveOrder(lastInsertId);
 
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }

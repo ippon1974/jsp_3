@@ -10,8 +10,7 @@
 
 <body>
 
-
-<table cellpadding="2" cellspacing="2" align="center" border="0" width="70%">
+<table align="center" border="0" cellpadding="2" cellspacing="2" width="70%">
     <tr>
         <td colspan="6">
             <h1>Оформление заказа</h1>
@@ -61,6 +60,12 @@
                 <label>Комментарий к заказу</label><br>
                 <textarea style="width: 300px" name="comment"></textarea><br><br>
                 <input type="submit" value="Оформить заказ">
+            </form>
+            <hr>
+            <form method="post">
+                <input type="hidden" name="createdAt" value="">
+                <input type="text" name="customerId" VALUE="33">
+                <input type="submit" value="ORDER">
             </form>
         </td>
     </tr>
