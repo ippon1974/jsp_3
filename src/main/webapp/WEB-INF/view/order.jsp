@@ -39,7 +39,7 @@
             <td><p>${orderList.getNamematerial()}</p></td>
             <td>${orderList.getWidth()} мм &#215; ${orderList.getHeight()} мм &#215; ${orderList.getSize()} мм</td>
             <td><p>${orderList.getTotalNDC() * orderList.getNumber()} руб.</p></td>
-            <td><p>${orderList.getNumber()}</p></td>
+            <td><p>${orderList.getNumber()} шт.</p></td>
     </tr>
         </c:forEach>
 
@@ -52,9 +52,15 @@
     <tr>
         <td colspan="7">
             <form method="post">
-                <%--    <input type="text" name="id">--%>
-                <input type="text" name="name">
-                <input type="submit" value="GO">
+                <label>Имя</label><br>
+                <input type="text" name="name"><br><br>
+                <label>Телефон</label><br>
+                <input type="text" name="phone"><br><br>
+                <label>Электронная почта</label><br>
+                <input type="text" name="email"><br><br>
+                <label>Комментарий к заказу</label><br>
+                <textarea style="width: 300px" name="comment"></textarea><br><br>
+                <input type="submit" value="Оформить заказ">
             </form>
         </td>
     </tr>

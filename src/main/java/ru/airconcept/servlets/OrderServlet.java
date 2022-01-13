@@ -60,8 +60,14 @@ public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
+        String phone = req.getParameter("phone");
+        String email = req.getParameter("email");
+        String comment = req.getParameter("comment");
         OrderService orderService = new OrderService(ConnectionFactory.getInstance());
-        orderService.saveOrder(name);
+
+        int lastInsertId = orderService.saveCustomer(name, phone, email, comment);
+        System.out.println(lastInsertId);
+
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 }
