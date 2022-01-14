@@ -118,25 +118,25 @@
                 <dd>${height} мм.</dd>
             </dl>
 
-<%--            <dl class="calcTotal">--%>
-<%--                <dt>Aspect </dt>--%>
-<%--                <dd>${aspect}</dd>--%>
-<%--                <dt>Площцадь </dt>--%>
-<%--                <dd>${area} кв. м.</dd>--%>
-<%--                <dt>Стоимость 1 кв. м. склад </dt>--%>
-<%--                <dd>${modelCalc.getCost()} руб.</dd>--%>
-<%--                <dt>Длина реза</dt>--%>
-<%--                <dd>${allcutlength} пог. м.</dd>--%>
-<%--                <dt>Стоимость реза 1 пог. м.</dt>--%>
-<%--                <dd>${modelCalc.getCostmcut()}  руб.</dd>--%>
-<%--            </dl>--%>
+            <dl class="calcTotal">
+                <dt>Aspect </dt>
+                <dd>${aspect}</dd>
+                <dt>Площцадь </dt>
+                <dd>${area} кв. м.</dd>
+                <dt>Стоимость 1 кв. м. склад </dt>
+                <dd>${modelCalc.getCost()} руб.</dd>
+                <dt>Длина реза</dt>
+                <dd>${allcutlength} пог. м.</dd>
+                <dt>Стоимость реза 1 пог. м.</dt>
+                <dd>${modelCalc.getCostmcut()}  руб.</dd>
+            </dl>
 
             <div class="finalCalc">
-<%--                <p>Стоимость материала без раскроя: ${costmatnotcut} руб. + 30% надбавка за материал ${addTaxMat} руб.</p>--%>
-<%--                <p>Стоимость раскрооя без материала: ${costcutnotmat} руб. + 30% надбавка за раской ${addTaxCut} руб.</p>--%>
+                <p>Стоимость материала без раскроя: ${costmatnotcut} руб. + 30% надбавка за материал ${addTaxMat} руб.</p>
+                <p>Стоимость раскрооя без материала: ${costcutnotmat} руб. + 30% надбавка за раской ${addTaxCut} руб.</p>
 
                 <div>
-<%--                    <h3>Итого: ${total} руб.</h3>--%>
+                    <h3>Итого: ${total} руб.</h3>
                     <h3>Итого с НДС: ${totalNdc} руб.</h3>
                 </div>
             </div>

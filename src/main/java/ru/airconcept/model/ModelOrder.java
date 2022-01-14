@@ -1,10 +1,12 @@
 package ru.airconcept.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class ModelOrder {
-    private String id;
-    private String name;
+    private int id;
+    private int customerId;
+    private String nametemplate;
     private String namematerial;
     private int typematerial;
     private int number;
@@ -13,21 +15,30 @@ public class ModelOrder {
     private int height;
     private BigDecimal totalNDC;
     private String img;
+    private Date createdAt;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getNametemplate() {
+        return nametemplate;
+    }
+
+    public void setNametemplate(String nametemplate) {
+        this.nametemplate = nametemplate;
     }
 
     public String getNamematerial() {
@@ -92,5 +103,13 @@ public class ModelOrder {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

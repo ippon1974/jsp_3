@@ -27,8 +27,8 @@ import java.util.Random;
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
 
-//    private OrderService orderService;
-    private static final Random r = new Random(); // <- shared resource
+    private OrderService orderService;
+    private ModelOrder modelOrder;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,23 +37,22 @@ public class OrderServlet extends HttpServlet {
         CartService cartService = (CartService) session.getAttribute ("cartService");
         List<ModelCart> cartList = cartService.list();
 
-        OrderService orderService = new OrderService(ConnectionFactory.getInstance());
+        orderService = new OrderService(ConnectionFactory.getInstance());
         List<ModelOrder> orderList = orderService.list();
 
         for (int i = 0; i < cartList.size(); i++) {
-            ModelOrder modelOrder = new ModelOrder();
-            modelOrder.setName (cartList.get(i).getName());
-            modelOrder.setNamematerial (cartList.get (i).getNamematerial());
-            modelOrder.setTypematerial (cartList.get (i).getTypematerial ());
-            modelOrder.setNumber (cartList.get (i).getNumber());
-            modelOrder.setSize (cartList.get (i).getSize ());
-            modelOrder.setWidth (cartList.get (i).getWidth ());
-            modelOrder.setHeight (cartList.get (i).getHeight ());
-            modelOrder.setImg (cartList.get (i).getImg ());
-            modelOrder.setTotalNDC (cartList.get (i).getTotalNDC());
+            modelOrder = new ModelOrder();
+            modelOrder.setNametemplate (cartList.get(i).getName());
+            modelOrder.setNamematerial (cartList.get(i).getNamematerial());
+            modelOrder.setTypematerial (cartList.get(i).getTypematerial());
+            modelOrder.setNumber (cartList.get(i).getNumber());
+            modelOrder.setSize (cartList.get(i).getSize ());
+            modelOrder.setWidth (cartList.get(i).getWidth ());
+            modelOrder.setHeight (cartList.get(i).getHeight ());
+            modelOrder.setImg (cartList.get(i).getImg ());
+            modelOrder.setTotalNDC (cartList.get(i).getTotalNDC());
             orderList.add (modelOrder);
         }
-
         req.setAttribute ("orderList", orderList);
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
@@ -61,16 +60,23 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        HttpSession session;
+        session = req.getSession(true);
+
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String email = req.getParameter("email");
         String comment = req.getParameter("comment");
-        OrderService orderService = new OrderService(ConnectionFactory.getInstance());
 
         int lastInsertId = orderService.saveCustomer(name, phone, email, comment);
+        List<ModelOrder> orderList = orderService.list();
+        for (int i = 0; i < orderList.size(); i++) {
+            orderService.saveOrder(lastInsertId, orderList.get(i).getNametemplate(), orderList.get(i).getNamematerial(),
+                    orderList.get(i).getTypematerial(), orderList.get(i).getNumber(), orderList.get(i).getSize(), orderList.get(i).getWidth(),
+                    orderList.get(i).getHeight(), orderList.get(i).getTotalNDC(), orderList.get(i).getImg());
+        }
 
-        orderService.saveOrder(lastInsertId);
-
+        session.removeAttribute("cartService");
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 }
