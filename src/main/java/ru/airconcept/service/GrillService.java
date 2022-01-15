@@ -47,7 +47,6 @@ public class GrillService {
     public static final String COLUMN_MATERIAL_SIZE_ID = "mid";
 
     private ConnectionFactory connectionFactory = null;
-
     public GrillService(ConnectionFactory connectionFactory) {
         this.connectionFactory = connectionFactory;
     }
@@ -80,24 +79,6 @@ public class GrillService {
         }
         return null;
     }
-
-//    public ModelGrill getById(int id) {
-//        try (Connection connection = connectionFactory.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID_QUERY);) {
-//            statement.setLong(1, id);
-//            try (ResultSet resultSet = statement.executeQuery();) {
-//                while (resultSet.next()) {
-//                    return new ModelGrill (resultSet.getInt(COLUMN_ID),
-//                            resultSet.getString(COLUMN_NAME),
-//                            resultSet.getString(COLUMN_TRANSLITERATIONS)
-//                    );
-//                }
-//            }
-//        } catch (Exception e) {
-//            throw new DaoException (String.format("Method getById(id: '%d') has thrown an exception.", id), e);
-//        }
-//        return null;
-//    }
 
     public List<ModelGrill> getAll() {
         List<ModelGrill> all = new ArrayList<ModelGrill>();

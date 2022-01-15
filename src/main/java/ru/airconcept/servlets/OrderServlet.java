@@ -2,9 +2,11 @@ package ru.airconcept.servlets;
 
 import ru.airconcept.dao.ConnectionFactory;
 import ru.airconcept.model.ModelCart;
+import ru.airconcept.model.ModelCustomerOrder;
 import ru.airconcept.model.ModelGrill;
 import ru.airconcept.model.ModelOrder;
 import ru.airconcept.service.CartService;
+import ru.airconcept.service.CustomerOrderService;
 import ru.airconcept.service.GrillService;
 import ru.airconcept.service.OrderService;
 
@@ -76,7 +78,22 @@ public class OrderServlet extends HttpServlet {
                     orderList.get(i).getHeight(), orderList.get(i).getTotalNDC(), orderList.get(i).getImg());
         }
 
-        session.removeAttribute("cartService");
+        CustomerOrderService customerOrderService = new CustomerOrderService(ConnectionFactory.getInstance());
+
+        List<ModelCustomerOrder> mList = customerOrderService.getAll();
+
+        ModelCustomerOrder modelCustomerOrder = customerOrderService.getByCustomerOrder(lastInsertId);
+        ModelCustomerOrder test;
+        System.out.println("/////////////////////////////////////////////////////////");
+        System.out.println(modelCustomerOrder.getName());
+        for (int i = 0; i < mList.size(); i++) {
+            test = customerOrderService.getByCustomerOrder(lastInsertId);
+            if(test.getCustomerId() == mList.get(i).getCustomerId()){
+                System.out.println(mList.get(i).getNameTemplate() + " " + " " + mList.get(i).getNameMaterial() + " " + mList.get(i).getTotalNDC());
+            }
+        }
+
+//        session.removeAttribute("cartService");
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 }
