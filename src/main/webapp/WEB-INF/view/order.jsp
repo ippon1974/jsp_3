@@ -18,7 +18,6 @@
         </td>
     </tr>
 
-
     <c:set var="totalcart" value="${0}" />
     <c:forEach var="orderList" items="${orderList}" varStatus="loop">
         <c:set var="totalcart" value="${totalcart + (orderList.getTotalNDC() * orderList.getNumber())}" />
@@ -102,6 +101,16 @@
         </td>
     </tr>
 </table>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 </html>

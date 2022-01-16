@@ -11,14 +11,16 @@ public class ModelCustomerOrder {
     private String comment;
     private String nameTemplate;
     private String nameMaterial;
+    private int typematerial;
     private int number;
+    private int size;
     private int width;
     private int height;
     private BigDecimal totalNDC;
     private String img;
     private Date createdAt;
 
-    public ModelCustomerOrder(int customerId, String name, String phone, String email, String comment, String nameTemplate, String nameMaterial, int number, int width, int height, BigDecimal totalNDC, String img, Date createdAt) {
+    public ModelCustomerOrder(int customerId, String name, String phone, String email, String comment, String nameTemplate, String nameMaterial, int typematerial, int number, int size, int width, int height, BigDecimal totalNDC, String img, Date createdAt) {
         this.customerId = customerId;
         this.name = name;
         this.phone = phone;
@@ -26,7 +28,9 @@ public class ModelCustomerOrder {
         this.comment = comment;
         this.nameTemplate = nameTemplate;
         this.nameMaterial = nameMaterial;
+        this.typematerial = typematerial;
         this.number = number;
+        this.size = size;
         this.width = width;
         this.height = height;
         this.totalNDC = totalNDC;
@@ -90,12 +94,28 @@ public class ModelCustomerOrder {
         this.nameMaterial = nameMaterial;
     }
 
+    public int getTypematerial() {
+        return typematerial;
+    }
+
+    public void setTypematerial(int typematerial) {
+        this.typematerial = typematerial;
+    }
+
     public int getNumber() {
         return number;
     }
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public int getWidth() {

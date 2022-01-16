@@ -16,8 +16,8 @@ import java.util.List;
 
 
 public class CustomerOrderService {
-    public static final String SELECT_CUSTOMER_ORDER = "SELECT customers.id,customers.name,customers.phone,customers.email,customers.comment,orders.customerId,orders.nametemplate,orders.namematerial,orders.`number`,orders.`size`,orders.width,orders.height,orders.totalNDC,orders.img,orders.createdAt FROM customers JOIN orders ON customers.id=orders.customerId WHERE customers.id = ?;";
-    public static final String SELECT_CUSTOMER_ORDER_ALL = "SELECT customers.id,customers.name,customers.phone,customers.email,customers.comment,orders.customerId,orders.nametemplate,orders.namematerial,orders.`number`,orders.`size`,orders.width,orders.height,orders.totalNDC,orders.img,orders.createdAt FROM customers JOIN orders ON customers.id=orders.customerId;";
+    public static final String SELECT_CUSTOMER_ORDER = "SELECT customers.id,customers.name,customers.phone,customers.email,customers.comment,orders.customerId,orders.nametemplate,orders.namematerial,orders.typematerial,orders.`number`,orders.`size`,orders.width,orders.height,orders.totalNDC,orders.img,orders.createdAt FROM customers JOIN orders ON customers.id=orders.customerId WHERE customers.id = ?;";
+    public static final String SELECT_CUSTOMER_ORDER_ALL = "SELECT customers.id,customers.name,customers.phone,customers.email,customers.comment,orders.customerId,orders.nametemplate,orders.namematerial,orders.typematerial, orders.`number`,orders.`size`,orders.width,orders.height,orders.totalNDC,orders.img,orders.createdAt FROM customers JOIN orders ON customers.id=orders.customerId;";
     public static final String COLUMN_CUSTOMER_ID = "customerId";
     public static final String COLUMN_CUSTOMER_NAME = "name";
     public static final String COLUMN_CUSTOMER_PHONE = "phone";
@@ -25,7 +25,9 @@ public class CustomerOrderService {
     public static final String COLUMN_CUSTOMER_COMMENT = "comment";
     public static final String COLUMN_ORDER_NAMETEMPLATE = "nameTemplate";
     public static final String COLUMN_ORDER_MATERIAL = "nameMaterial";
+    public static final String COLUMN_ORDER_TYPE_MATERIAL = "typematerial";
     public static final String COLUMN_ORDER_NUMBER = "number";
+    public static final String COLUMN_ORDER_SIZE = "size";
     public static final String COLUMN_ORDER_TEMPLATE_WIDTH = "width";
     public static final String COLUMN_ORDER_TEMPLATE_HEIGHT = "height";
     public static final String COLUMN_ORDER_TOTALNDC = "totalNDC";
@@ -51,7 +53,9 @@ public class CustomerOrderService {
                             resultSet.getString(COLUMN_CUSTOMER_COMMENT),
                             resultSet.getString (COLUMN_ORDER_NAMETEMPLATE),
                             resultSet.getString(COLUMN_ORDER_MATERIAL),
+                            resultSet.getInt(COLUMN_ORDER_TYPE_MATERIAL),
                             resultSet.getInt(COLUMN_ORDER_NUMBER),
+                            resultSet.getInt(COLUMN_ORDER_SIZE),
                             resultSet.getInt(COLUMN_ORDER_TEMPLATE_WIDTH),
                             resultSet.getInt(COLUMN_ORDER_TEMPLATE_HEIGHT),
                             resultSet.getBigDecimal(COLUMN_ORDER_TOTALNDC),
@@ -80,7 +84,9 @@ public class CustomerOrderService {
                             resultSet.getString(COLUMN_CUSTOMER_COMMENT),
                             resultSet.getString (COLUMN_ORDER_NAMETEMPLATE),
                             resultSet.getString(COLUMN_ORDER_MATERIAL),
+                            resultSet.getInt(COLUMN_ORDER_TYPE_MATERIAL),
                             resultSet.getInt(COLUMN_ORDER_NUMBER),
+                            resultSet.getInt(COLUMN_ORDER_SIZE),
                             resultSet.getInt(COLUMN_ORDER_TEMPLATE_WIDTH),
                             resultSet.getInt(COLUMN_ORDER_TEMPLATE_HEIGHT),
                             resultSet.getBigDecimal(COLUMN_ORDER_TOTALNDC),

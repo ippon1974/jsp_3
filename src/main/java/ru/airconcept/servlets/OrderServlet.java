@@ -5,11 +5,11 @@ import ru.airconcept.model.ModelCart;
 import ru.airconcept.model.ModelCustomerOrder;
 import ru.airconcept.model.ModelGrill;
 import ru.airconcept.model.ModelOrder;
-import ru.airconcept.service.CartService;
-import ru.airconcept.service.CustomerOrderService;
-import ru.airconcept.service.GrillService;
-import ru.airconcept.service.OrderService;
+import ru.airconcept.service.*;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,14 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
@@ -83,17 +82,125 @@ public class OrderServlet extends HttpServlet {
         List<ModelCustomerOrder> mList = customerOrderService.getAll();
 
         ModelCustomerOrder modelCustomerOrder = customerOrderService.getByCustomerOrder(lastInsertId);
-        ModelCustomerOrder test;
+//        ModelCustomerOrder test;
         System.out.println("/////////////////////////////////////////////////////////");
         System.out.println(modelCustomerOrder.getName());
         for (int i = 0; i < mList.size(); i++) {
-            test = customerOrderService.getByCustomerOrder(lastInsertId);
-            if(test.getCustomerId() == mList.get(i).getCustomerId()){
+//            test = customerOrderService.getByCustomerOrder(lastInsertId);
+            if(modelCustomerOrder.getCustomerId() == mList.get(i).getCustomerId()){
                 System.out.println(mList.get(i).getNameTemplate() + " " + " " + mList.get(i).getNameMaterial() + " " + mList.get(i).getTotalNDC());
             }
         }
 
-//        session.removeAttribute("cartService");
+        //
+        String to = modelCustomerOrder.getEmail();
+
+        // Sender's email ID needs to be mentioned
+        String from = "post2074@gmail.com";
+
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put ("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session sessionMail = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("post2074@gmail.com", "k4b8c321974");
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        sessionMail.setDebug(true);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(sessionMail);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress (from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Производство вентиляционных решеток");
+
+            // Now set the actual message
+//            message.setText("This is actual message");
+
+//            ArrayList<String> list = new ArrayList<String>();
+//            list.add ("one");
+//            list.add ("two");
+//            list.add ("three");
+//            list.add ("four");
+//            list.add ("five");
+//            list.add ("six");
+            StringBuilder listBuilder = new StringBuilder();
+
+            //Name customer
+            listBuilder.append("<p>").append (modelCustomerOrder.getName()).append ("</p>");
+
+            //Phone customer
+            listBuilder.append("<p>").append (modelCustomerOrder.getPhone()).append ("</p>");
+
+            //Email customer
+            listBuilder.append("<p>").append (modelCustomerOrder.getEmail()).append ("</p>");
+
+            //Comment customer
+            listBuilder.append("<p>").append (modelCustomerOrder.getComment ()).append ("</p>");
+
+            //All Cosst Grill of Cart
+            BigDecimal allTotalCostsNDC = new BigDecimal (0);
+
+            listBuilder.append ("<table border=0 width=100%>");
+            for (int i = 0; i < mList.size(); i++) {
+                if(modelCustomerOrder.getCustomerId() == mList.get(i).getCustomerId()) {
+                    BigDecimal costCount = mList.get(i).getTotalNDC().multiply (new BigDecimal (mList.get (i).getNumber()));
+                    allTotalCostsNDC = allTotalCostsNDC.add (costCount);
+                    listBuilder.append ("<tr>");
+                    if(mList.get(i).getNameMaterial().equals ("Латунь")){
+                    listBuilder.append("<td>").append("<img src=http://localhost:8080/img/cart/copper/").append(mList.get(i).getImg()).append (".png>") .append("</td>");}
+                    if(mList.get(i).getNameMaterial().equals ("Медь")){
+                        listBuilder.append("<td>").append("<img src=http://localhost:8080/img/cart/brass/").append(mList.get(i).getImg()).append (".png>") .append("</td>");}
+                    if(mList.get(i).getNameMaterial().equals ("Сталь")){
+                        listBuilder.append("<td>").append("<img src=http://localhost:8080/img/cart/steel/").append(mList.get(i).getImg()).append (".png>") .append("</td>");}
+                    listBuilder.append ("<td>").append ("Вентиляционная решетка ").append(mList.get(i).getNameTemplate()).append ("</td>");
+                    listBuilder.append ("<td>").append(mList.get(i).getNameMaterial()).append ("</td>");
+                    listBuilder.append ("<td>").append(mList.get(i).getWidth()).append ("мм ").append (mList.get (i).getHeight ()).append ("мм ") .append (mList.get (i).getSize()).append ("мм ") .append("</td>");
+                    listBuilder.append ("<td>").append(costCount).append (" руб.").append ("</td>");
+                    listBuilder.append ("<td>").append(mList.get(i).getNumber()).append (" шт.").append ("</td>");
+                    listBuilder.append ("</tr>");
+                }
+            }
+            listBuilder.append ("</table>");
+            listBuilder.append ("<hr style=border-top: 1px solid black;");
+            listBuilder.append ("<h3>").append ("Общая стоимость: ").append(allTotalCostsNDC).append (" руб.").append ("</h3>");
+
+            message.setContent(listBuilder.toString(), "text/html; charset=UTF-8");
+
+            System.out.println("sending...");
+            // Send message
+
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
+
+
+        session.removeAttribute("cartService");
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
     }
 }
