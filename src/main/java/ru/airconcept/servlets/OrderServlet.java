@@ -7,6 +7,10 @@ import ru.airconcept.model.ModelGrill;
 import ru.airconcept.model.ModelOrder;
 import ru.airconcept.service.*;
 
+import javax.activation.CommandMap;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
+import javax.activation.MailcapCommandMap;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -92,7 +96,7 @@ public class OrderServlet extends HttpServlet {
             }
         }
 
-        //
+        // Sender to email user
         String to = modelCustomerOrder.getEmail();
 
         // Sender's email ID needs to be mentioned
@@ -127,6 +131,8 @@ public class OrderServlet extends HttpServlet {
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(sessionMail);
 
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("mail@htz.ru"));
+
             // Set From: header field of the header.
             message.setFrom(new InternetAddress (from));
 
@@ -136,17 +142,20 @@ public class OrderServlet extends HttpServlet {
             // Set Subject: header field
             message.setSubject("Производство вентиляционных решеток");
 
-            // Now set the actual message
-//            message.setText("This is actual message");
-
-//            ArrayList<String> list = new ArrayList<String>();
-//            list.add ("one");
-//            list.add ("two");
-//            list.add ("three");
-//            list.add ("four");
-//            list.add ("five");
-//            list.add ("six");
             StringBuilder listBuilder = new StringBuilder();
+
+            listBuilder.append ("<style>\n" +
+                    "        h1.one{\n" +
+                    "            font-weight: normal;\n" +
+                    "        }\n" +
+                    "        table.inside tr td {\n" +
+                    "            font-family: \"\";\n" +
+                    "            font-size: 0.7em;\n" +
+                    "        }\n" +
+                    "        p{\n" +
+                    "            font-size: 0.7em;\n" +
+                    "        }\n" +
+                    "    </style>");
 
             //Name customer
             listBuilder.append("<p>").append (modelCustomerOrder.getName()).append ("</p>");
@@ -163,7 +172,8 @@ public class OrderServlet extends HttpServlet {
             //All Cosst Grill of Cart
             BigDecimal allTotalCostsNDC = new BigDecimal (0);
 
-            listBuilder.append ("<table border=0 width=100%>");
+
+            listBuilder.append ("<table class=inside border=0 width=100%>");
             for (int i = 0; i < mList.size(); i++) {
                 if(modelCustomerOrder.getCustomerId() == mList.get(i).getCustomerId()) {
                     BigDecimal costCount = mList.get(i).getTotalNDC().multiply (new BigDecimal (mList.get (i).getNumber()));
@@ -184,10 +194,13 @@ public class OrderServlet extends HttpServlet {
                 }
             }
             listBuilder.append ("</table>");
-            listBuilder.append ("<hr style=border-top: 1px solid black;");
+            listBuilder.append ("<hr style=border-top: 1px solid black;>");
             listBuilder.append ("<h3>").append ("Общая стоимость: ").append(allTotalCostsNDC).append (" руб.").append ("</h3>");
 
             message.setContent(listBuilder.toString(), "text/html; charset=UTF-8");
+
+            MailAdminService madmin = new MailAdminService();
+            madmin.send ();
 
             System.out.println("sending...");
             // Send message
@@ -197,8 +210,6 @@ public class OrderServlet extends HttpServlet {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
-
-
 
         session.removeAttribute("cartService");
         req.getRequestDispatcher("/WEB-INF/view/order.jsp").forward(req, resp);
