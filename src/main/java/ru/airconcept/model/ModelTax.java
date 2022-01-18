@@ -19,39 +19,19 @@ public class ModelTax {
         return taxid;
     }
 
-    public void setTaxid(int taxid) {
-        this.taxid = taxid;
-    }
-
     public int getTaxndc() {
         return taxndc;
-    }
-
-    public void setTaxndc(int taxndc) {
-        this.taxndc = taxndc;
     }
 
     public int getTaxio() {
         return taxio;
     }
 
-    public void setTaxio(int taxio) {
-        this.taxio = taxio;
-    }
-
     public int getCoeffcut() {
         return coeffcut;
     }
 
-    public void setCoeffcut(int coeffcut) {
-        this.coeffcut = coeffcut;
-    }
-
     public int getCoeffmat() {
         return coeffmat;
-    }
-
-    public void setCoeffmat(int coeffmat) {
-        this.coeffmat = coeffmat;
     }
 }

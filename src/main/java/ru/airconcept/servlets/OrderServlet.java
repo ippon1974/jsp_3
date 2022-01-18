@@ -119,7 +119,7 @@ public class OrderServlet extends HttpServlet {
         Session sessionMail = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("post2074@gmail.com", "k4b8c321974");
+                return new PasswordAuthentication("post2074@gmail.com", "");
             }
 
         });
@@ -154,6 +154,9 @@ public class OrderServlet extends HttpServlet {
                     "        }\n" +
                     "        p{\n" +
                     "            font-size: 0.7em;\n" +
+                    "        }\n" +
+                    "        p.total{\n" +
+                    "            font-size: 0.9em;\n" +
                     "        }\n" +
                     "    </style>");
 
@@ -195,7 +198,7 @@ public class OrderServlet extends HttpServlet {
             }
             listBuilder.append ("</table>");
             listBuilder.append ("<hr style=border-top: 1px solid black;>");
-            listBuilder.append ("<h3>").append ("Общая стоимость: ").append(allTotalCostsNDC).append (" руб.").append ("</h3>");
+            listBuilder.append ("<p class = total>").append ("Общая стоимость: ").append(allTotalCostsNDC).append (" руб.").append ("</p>");
 
             message.setContent(listBuilder.toString(), "text/html; charset=UTF-8");
 

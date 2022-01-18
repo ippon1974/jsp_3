@@ -15,23 +15,11 @@ public class ModelMaterial {
         return mid;
     }
 
-    public void setMid(int mid) {
-        this.mid = mid;
-    }
-
     public int getMtype() {
         return mtype;
     }
 
-    public void setMtype(int mtype) {
-        this.mtype = mtype;
-    }
-
     public String getMname() {
         return mname;
-    }
-
-    public void setMname(String mname) {
-        this.mname = mname;
     }
 }
